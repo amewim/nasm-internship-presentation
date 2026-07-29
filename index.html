@@ -638,19 +638,6 @@ section.category:last-of-type { border-bottom: none; }
   margin-bottom: 20px;
 }
 .figure-row .plate { margin: 0; }
-.plate.wide-mat {
-  padding: 32px;
-  max-width: 100%;
-}
-.plate.wide-mat img {
-  max-width: 260px;
-  margin: 0 auto;
-}
-.plate.wide-mat figcaption {
-  max-width: 260px;
-  margin: 0 auto;
-}
-
 /* hero with portrait */
 @media (max-width: 620px) {
   .figure-row { grid-template-columns: 1fr; }
@@ -757,7 +744,7 @@ footer {
       <h2>About Me</h2>
     </div>
 
-    <figure class="plate wide-mat" style="margin-bottom: 20px;">
+    <figure class="plate" style="max-width: 300px; margin: 0 auto 20px;">
       <img src="images/portrait.jpg" alt="Amelia in a celestial-print dress, mountains behind her" width="720" height="1080" fetchpriority="high" decoding="async">
       <figcaption><span>The Archivist</span><span class="cap-id">FIG. 01</span></figcaption>
     </figure>
@@ -776,7 +763,7 @@ footer {
       </ul>
     </div>
 
-    <figure class="plate" style="margin-bottom: 20px;">
+    <figure class="plate" style="max-width: 300px; margin: 0 auto 20px;">
       <img src="images/droids.jpg" alt="Amelia smiling beside Chopper and other droids" width="1600" height="1200" loading="lazy" decoding="async">
       <figcaption><span>Among droids</span><span class="cap-id">FIG. 02</span></figcaption>
     </figure>
@@ -793,7 +780,7 @@ footer {
       </ul>
     </div>
 
-    <figure class="plate" style="margin-bottom: 20px;">
+    <figure class="plate" style="max-width: 300px; margin: 0 auto 20px;">
       <img src="images/f86.jpg" alt="Amelia with arms spread in front of an F-86 Sabre with sharkmouth nose art" width="1600" height="1200" loading="lazy" decoding="async">
       <figcaption><span>Aviation runs in the family</span><span class="cap-id">FIG. 03</span></figcaption>
     </figure>
@@ -892,7 +879,7 @@ footer {
     </div>
 
     <figure class="plate" style="max-width: 380px; margin: 0 0 20px;">
-      <img src="images/july1-cheer.jpg" alt="Amelia cheering with arms raised among colleagues applauding visitors entering on July 1st, the museum's 50th anniversary" width="1600" height="1067" loading="lazy" decoding="async">
+      <img src="images/july1-cheer.jpg" alt="A crowd of staff lining the balcony, applauding as visitors arrive on July 1st, the museum's 50th anniversary" width="1600" height="1067" loading="lazy" decoding="async">
       <figcaption><span>July 1st: cheering visitors in</span><span class="cap-id">FIG. 08</span></figcaption>
     </figure>
 
@@ -920,7 +907,7 @@ footer {
   </section>
 
   <footer>
-    <figure class="plate wide-mat" style="margin: 0 auto 26px;">
+    <figure class="plate" style="max-width: 340px; margin: 0 auto 26px;">
       <img src="images/star-sign.jpg" alt="Lit marquee star sign reading Please Come Again, among rockets" width="1205" height="1600" loading="lazy" decoding="async">
       <figcaption><span>Please Come Again · Futures in Space</span><span class="cap-id">FIG. 09</span></figcaption>
     </figure>
