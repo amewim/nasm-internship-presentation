@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amelia — Exhibits Design Studio, NASM · Summer 2026</title>
+<title>Amelia Wimbish · Exhibits Design Studio, NASM · Summer 2026</title>
+<meta name="description" content="A digital exhibit documenting Amelia Wimbish's summer 2026 internship as an Information Management Assistant in the Exhibits Design Studio at the Smithsonian National Air and Space Museum.">
+<meta property="og:title" content="Amelia Wimbish · Exhibits Design Studio, NASM">
+<meta property="og:description" content="A digital exhibit documenting a summer 2026 internship in digital asset management at the Smithsonian National Air and Space Museum.">
+<meta property="og:image" content="images/portrait.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231A1630'/><rect x='6' y='9' width='20' height='14' rx='2' fill='%23F4EEDF'/><rect x='9' y='13' width='14' height='1.6' fill='%236C5A9E'/><rect x='9' y='17' width='9' height='1.6' fill='%239BCBEF'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,ital@9..144,300..600,0..1&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -49,7 +56,19 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1.5px 1.5px at 15px 25px, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 85px 75px, rgba(255,255,255,0.25), transparent),
+    radial-gradient(1.5px 1.5px at 140px 35px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 55px 115px, rgba(255,255,255,0.22), transparent),
+    radial-gradient(1.5px 1.5px at 190px 95px, rgba(255,255,255,0.32), transparent),
+    radial-gradient(1px 1px at 115px 160px, rgba(255,255,255,0.2), transparent),
+    radial-gradient(ellipse 900px 600px at 12% 8%, rgba(199,180,242,0.07), transparent 60%),
+    radial-gradient(ellipse 800px 700px at 88% 65%, rgba(155,203,239,0.06), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 50% 95%, rgba(230,184,196,0.04), transparent 60%);
+  background-size: 220px 220px, 220px 220px, 220px 220px, 220px 220px, 220px 220px, 220px 220px, 100% 100%, 100% 100%, 100% 100%;
+  background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
   color: var(--ink);
   font-family: var(--body);
   font-size: 17px;
@@ -304,9 +323,10 @@ body.locked { overflow: hidden; height: 100vh; }
 .hc-title {
   font-family: var(--display);
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 5vw, 1.3rem);
   color: var(--paper-ink);
   margin-top: 6px;
+  white-space: nowrap;
 }
 .hc-foot {
   font-family: var(--mono);
@@ -319,15 +339,15 @@ body.locked { overflow: hidden; height: 100vh; }
 
 .gate-hint {
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink-dim);
   animation: hintbreathe 2.4s ease-in-out infinite;
 }
 @keyframes hintbreathe {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.9; }
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
 }
 .spark {
   position: fixed;
@@ -350,6 +370,34 @@ body.locked { overflow: hidden; height: 100vh; }
     transition-delay: 0s !important;
   }
   .spark { display: none; }
+}
+
+/* ---- focus visibility (keyboard navigation) ---- */
+.drawer:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+.topnav a:focus-visible,
+footer a:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--cream);
+  color: var(--paper-ink);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 10px 16px;
+  z-index: 200;
+  border-radius: 0 0 3px 0;
+}
+.skip-link:focus {
+  left: 0;
 }
 
 /* ---- nav ---- */
@@ -402,8 +450,7 @@ nav.topbar {
 
 /* ---- hero / masthead ---- */
 header.hero {
-  padding: 56px 0 44px;
-  border-bottom: 1px solid var(--rule);
+  padding: 56px 0 8px;
 }
 .kicker {
   font-family: var(--mono);
@@ -436,14 +483,6 @@ header.hero {
   margin-bottom: 24px;
 }
 .byline b { color: var(--ink); font-weight: 700; }
-.intro-text {
-  color: var(--ink-dim);
-  font-size: 1.08rem;
-  max-width: 56ch;
-  margin: 0;
-  line-height: 1.75;
-}
-
 /* ---- section header ---- */
 section.category { padding: 56px 0 12px; border-bottom: 1px solid var(--rule); }
 section.category:last-of-type { border-bottom: none; }
@@ -452,7 +491,7 @@ section.category:last-of-type { border-bottom: none; }
   display: flex;
   align-items: baseline;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 26px;
 }
 .section-num {
   font-family: var(--mono);
@@ -466,6 +505,14 @@ section.category:last-of-type { border-bottom: none; }
   font-size: 1.7rem;
   margin: 0;
   color: var(--ink);
+}
+.section-kicker {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink-dim);
+  font-size: 1rem;
+  margin: -20px 0 30px;
 }
 
 /* ---- object-label cards ---- */
@@ -530,15 +577,17 @@ section.category:last-of-type { border-bottom: none; }
 
 .card ul {
   margin: 0;
-  padding: 0;
-  list-style: none;
+  padding: 0 0 0 18px;
+  list-style: disc;
 }
 .card li {
   margin-bottom: 10px;
   color: var(--paper-ink);
-  padding-left: 14px;
-  border-left: 2px solid var(--cream-edge);
+  padding-left: 4px;
 }
+.card li::marker { color: var(--purple-ink); }
+.card.blue li::marker { color: var(--blue-ink); }
+.card.rose li::marker { color: var(--rose-ink); }
 .card li:last-child { margin-bottom: 0; }
 .card li .sub { color: var(--paper-ink-dim); font-style: italic; }
 .card li b { font-weight: 600; color: var(--purple-ink); }
@@ -589,31 +638,28 @@ section.category:last-of-type { border-bottom: none; }
   margin-bottom: 20px;
 }
 .figure-row .plate { margin: 0; }
+.plate.wide-mat {
+  padding: 32px;
+  max-width: 100%;
+}
+.plate.wide-mat img {
+  max-width: 260px;
+  margin: 0 auto;
+}
+.plate.wide-mat figcaption {
+  max-width: 260px;
+  margin: 0 auto;
+}
 
 /* hero with portrait */
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 36px;
-  align-items: start;
-}
-.hero-grid .plate { transform: rotate(1.2deg); }
-
 @media (max-width: 620px) {
   .figure-row { grid-template-columns: 1fr; }
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-grid .plate { max-width: 300px; transform: none; }
 }
 
 /* ---- footer ---- */
 footer {
   padding: 44px 0 56px;
   margin-top: 20px;
-}
-.footer-rule {
-  border: none;
-  border-top: 1px solid var(--rule);
-  margin-bottom: 22px;
 }
 .footer-row {
   display: flex;
@@ -628,16 +674,17 @@ footer {
 
 @media (max-width: 540px) {
   .card { padding: 20px 18px 16px; }
-  header.hero { padding: 40px 0 32px; }
+  header.hero { padding: 40px 0 8px; }
   section.category { padding: 40px 0 8px; }
   .byline { flex-direction: column; gap: 4px; }
 }
 </style>
 </head>
 <body class="locked">
+<a class="skip-link" href="#main">Skip to exhibit content</a>
 
 <div id="gate">
-  <div class="gate-kicker">The Collection of Amelia Wimbish<br>Exhibits Design Studio · NASM</div>
+  <div class="gate-kicker">The Collection of A. Wimbish<br>Exhibits Design Studio · NASM</div>
   <div class="cabinet">
     <div class="neighbor" aria-hidden="true">
       <div class="n-label">Spring 2026</div>
@@ -690,25 +737,16 @@ footer {
   </div>
 </nav>
 
-<div class="wrap">
+<main class="wrap" id="main">
 
   <header class="hero">
     <div class="kicker">Digital Exhibit &nbsp;·&nbsp; National Air and Space Museum &nbsp;·&nbsp; Exhibits Design Studio</div>
-    <div class="hero-grid">
-      <div>
-        <h1>Amelia Wimbish.</h1>
-        <div class="byline">
-          <span><b>Hometown</b> — Senoia, Georgia</span>
-          <span><b>Role</b> — Information Management Assistant</span>
-          <span><b>Term</b> — Summer 2026</span>
-          <span><b>Department</b> — Exhibits Design Studio</span>
-        </div>
-        <p class="intro-text">Welcome. This is a self-guided companion to my summer internship presentation, walking through who I am, the work itself, and what I'm taking with me from a summer in NASM's Exhibits Design Studio.</p>
-      </div>
-      <figure class="plate">
-        <img src="images/portrait.jpg" alt="Amelia in a celestial-print dress, mountains behind her">
-        <figcaption><span>The Archivist</span><span class="cap-id">FIG. 01</span></figcaption>
-      </figure>
+    <h1>Amelia Wimbish.</h1>
+    <div class="byline">
+      <span><b>Hometown:</b> Senoia, Georgia</span>
+      <span><b>Role:</b> Information Management Assistant</span>
+      <span><b>Term:</b> Summer 2026</span>
+      <span><b>Department:</b> Exhibits Design Studio</span>
     </div>
   </header>
 
@@ -719,6 +757,11 @@ footer {
       <h2>About Me</h2>
     </div>
 
+    <figure class="plate wide-mat" style="margin-bottom: 20px;">
+      <img src="images/portrait.jpg" alt="Amelia in a celestial-print dress, mountains behind her" width="720" height="1080" fetchpriority="high" decoding="async">
+      <figcaption><span>The Archivist</span><span class="cap-id">FIG. 01</span></figcaption>
+    </figure>
+
     <div class="card">
       <div class="card-label">
         <span class="card-title">Who I Am</span>
@@ -726,12 +769,17 @@ footer {
       </div>
       <ul>
         <li>UX → Information Science</li>
-        <li>Amateur astronomer since childhood, having grown up under dark rural skies</li>
-        <li>Digital archivist drawn to uncovering hidden stories</li>
-        <li>Aesthetic influences: animation, video games, Elegant Gothic Lolita, and midcentury (50s–70s) American fashion</li>
+        <li>Amateur astronomer, grew up under dark rural skies</li>
+        <li>Digital archivist: hidden stories</li>
+        <li>Aesthetic influences: animation, video games, Elegant Gothic Lolita, midcentury fashion</li>
         <li>A deep love of pop culture and history</li>
       </ul>
     </div>
+
+    <figure class="plate" style="margin-bottom: 20px;">
+      <img src="images/droids.jpg" alt="Amelia smiling beside Chopper and other droids" width="1600" height="1200" loading="lazy" decoding="async">
+      <figcaption><span>Among droids</span><span class="cap-id">FIG. 02</span></figcaption>
+    </figure>
 
     <div class="card">
       <div class="card-label">
@@ -739,22 +787,16 @@ footer {
         <span class="card-tag">A.02</span>
       </div>
       <ul>
-        <li>Pursuing an <b>MSLS</b> at UNC Chapel Hill, focused on special collections and public history</li>
+        <li><b>Master of Science in Library Science (MSLS)</b>, UNC Chapel Hill: special collections, public history</li>
         <li>BS in Interaction Design, Kennesaw State University <span class="sub">(minors: psychology, technical communication)</span></li>
-        <li>Family aviation background: a grandfather who was a helicopter mechanic in Vietnam and later became a plane mechanic for Delta, an uncle who's a Delta pilot, and a childhood Flight Simulator 2000 phase</li>
+        <li>Family aviation: grandfather (Vietnam, then Delta mechanic), uncle (Delta pilot), childhood Flight Simulator 2000</li>
       </ul>
     </div>
 
-    <div class="figure-row">
-      <figure class="plate">
-        <img src="images/f86.jpg" alt="Amelia with arms spread in front of an F-86 Sabre with sharkmouth nose art">
-        <figcaption><span>Aviation runs in the family</span><span class="cap-id">FIG. 02</span></figcaption>
-      </figure>
-      <figure class="plate">
-        <img src="images/droids.jpg" alt="Amelia smiling beside Chopper and other droids">
-        <figcaption><span>Among droids</span><span class="cap-id">FIG. 03</span></figcaption>
-      </figure>
-    </div>
+    <figure class="plate" style="margin-bottom: 20px;">
+      <img src="images/f86.jpg" alt="Amelia with arms spread in front of an F-86 Sabre with sharkmouth nose art" width="1600" height="1200" loading="lazy" decoding="async">
+      <figcaption><span>Aviation runs in the family</span><span class="cap-id">FIG. 03</span></figcaption>
+    </figure>
   </section>
 
   <!-- THE WORK -->
@@ -763,6 +805,7 @@ footer {
       <span class="section-num">02</span>
       <h2>The Work</h2>
     </div>
+    <p class="section-kicker">The record: how a museum remembers itself.</p>
 
     <div class="card blue">
       <div class="card-label">
@@ -771,15 +814,14 @@ footer {
       </div>
       <ul>
         <li><b>Information Management Assistant</b>, Exhibits Design Studio</li>
-        <li>EDS: where museum ideas become walkable spaces</li>
         <li>Supervisor: Beatrice Mowry</li>
-        <li>Includes project managers, exhibit design managers, designers, script writers, and media designers, alongside the design production and design technology teams</li>
+        <li>Includes designers, writers, project managers, production and technology teams</li>
       </ul>
     </div>
 
     <div class="card blue">
       <div class="card-label">
-        <span class="card-title">The Project — Digital Asset Management</span>
+        <span class="card-title">The Project: Digital Asset Management</span>
         <span class="card-tag">B.02</span>
       </div>
       <ul>
@@ -789,13 +831,8 @@ footer {
     </div>
 
     <figure class="plate" style="margin-bottom: 20px;">
-      <img src="images/dams-desk.jpg" alt="Amelia's desk: two monitors and a tablet in split view, showing DAMS, an image list, and a gallery script side by side">
+      <img src="images/dams-desk.jpg" alt="Amelia's desk: two monitors and a tablet in split view, showing DAMS, an image list, and a gallery script side by side" width="1600" height="1205" loading="lazy" decoding="async">
       <figcaption><span>The actual setup: always split-screen, always two monitors</span><span class="cap-id">FIG. 04</span></figcaption>
-    </figure>
-
-    <figure class="plate" style="margin-bottom: 20px;">
-      <img src="images/lunar-module.jpg" alt="Apollo Lunar Module in the Boeing Milestones of Flight Hall">
-      <figcaption><span>Lunar Module — Boeing Milestones of Flight Hall</span><span class="cap-id">FIG. 05</span></figcaption>
     </figure>
 
     <div class="card blue">
@@ -809,20 +846,14 @@ footer {
       </ul>
     </div>
 
-    <div class="figure-row">
-      <figure class="plate">
-        <img src="images/futures-gallery.jpg" alt="Futures in Space gallery with Blue Origin capsule and Space in Pop Culture screen">
-        <figcaption><span>Futures in Space — completed</span><span class="cap-id">FIG. 06</span></figcaption>
-      </figure>
-      <figure class="plate">
-        <img src="images/vega.jpg" alt="Amelia Earhart's red Lockheed 5B Vega">
-        <figcaption><span>Earhart's Lockheed 5B Vega</span><span class="cap-id">FIG. 07</span></figcaption>
-      </figure>
-    </div>
+    <figure class="plate" style="margin-bottom: 20px;">
+      <img src="images/futures-gallery.jpg" alt="Futures in Space gallery with Blue Origin capsule and Space in Pop Culture screen" width="1205" height="1600" loading="lazy" decoding="async">
+      <figcaption><span>Futures in Space (completed)</span><span class="cap-id">FIG. 05</span></figcaption>
+    </figure>
 
     <figure class="plate" style="margin-bottom: 20px;">
-      <img src="images/futures-dams.jpg" alt="DAMS asset list for Futures in Space, showing catalog entries with descriptions like a 1967 Lunar Hilton reservation card and a Doctor Who screenshot">
-      <figcaption><span>Behind the gallery: cataloged assets for Futures in Space</span><span class="cap-id">FIG. 08</span></figcaption>
+      <img src="images/futures-dams.jpg" alt="DAMS asset list for Futures in Space, showing catalog entries with descriptions like a 1967 Lunar Hilton reservation card and a Doctor Who screenshot" width="1600" height="874" loading="lazy" decoding="async">
+      <figcaption><span>1967 "Lunar Hilton" card, a Doctor Who still, space-age futurism</span><span class="cap-id">FIG. 06</span></figcaption>
     </figure>
 
     <div class="card blue">
@@ -832,9 +863,14 @@ footer {
       </div>
       <ul>
         <li>Finishing the remaining galleries</li>
-        <li>Working with designers to organize scripts and image lists so the handoff to the next intern is clean</li>
+        <li>Organizing scripts and image lists for a clean handoff</li>
       </ul>
     </div>
+
+    <figure class="plate" style="margin-bottom: 20px;">
+      <img src="images/interns-skylab.jpg" alt="Amelia with fellow NASM interns from across departments and EDS staff, smiling on the spiral staircase beside Skylab" width="1600" height="1067" loading="lazy" decoding="async">
+      <figcaption><span>With fellow NASM interns and staff, on the Skylab staircase</span><span class="cap-id">FIG. 07</span></figcaption>
+    </figure>
   </section>
 
   <!-- REFLECTIONS -->
@@ -843,6 +879,7 @@ footer {
       <span class="section-num">03</span>
       <h2>Reflections</h2>
     </div>
+    <p class="section-kicker">What's found: a summer's worth of cataloging, and what it taught me.</p>
 
     <div class="card rose">
       <div class="card-label">
@@ -850,14 +887,13 @@ footer {
         <span class="card-tag">C.01</span>
       </div>
       <ul>
-        <li>NASM's 50th birthday: 5 galleries opened the same day, with cake and celebration across the whole museum</li>
-        <li>Frustrating: image lists weren't always the current version of what was actually in the museum. Not her fault, but it explained a lot of early confusion</li>
+        <li>NASM's 50th birthday: 5 galleries opened same day, museum-wide celebration</li>
       </ul>
     </div>
 
     <figure class="plate" style="max-width: 380px; margin: 0 0 20px;">
-      <img src="images/lego-baby.jpg" alt="Red LEGO space baby on a desk, birthday flowers from the museum's 50th behind it">
-      <figcaption><span>Desk crew — 50th birthday flowers behind</span><span class="cap-id">FIG. 09</span></figcaption>
+      <img src="images/july1-cheer.jpg" alt="Amelia cheering with arms raised among colleagues applauding visitors entering on July 1st, the museum's 50th anniversary" width="1600" height="1067" loading="lazy" decoding="async">
+      <figcaption><span>July 1st: cheering visitors in</span><span class="cap-id">FIG. 08</span></figcaption>
     </figure>
 
     <div class="card rose">
@@ -866,7 +902,7 @@ footer {
         <span class="card-tag">C.02</span>
       </div>
       <ul>
-        <li>Short term: a museum or library role at a space museum, observatory/planetarium, or science library</li>
+        <li>Short term: a museum or library role at a space museum, observatory, planetarium, or science library</li>
         <li>Long term: studying STS or history of science, possibly becoming a curator or space historian</li>
       </ul>
     </div>
@@ -877,25 +913,36 @@ footer {
         <span class="card-tag">C.03</span>
       </div>
       <ul>
-        <li>Hoped for: a better understanding of museum practices, and how information ecosystems serve the public at an institution like NASM</li>
-        <li>Yes. Learned how the department works together with curators, educators, and historians to bring their input into exhibits</li>
+        <li>Hoped for: understanding how museums serve the public through information</li>
+        <li>Learned how EDS collaborates with curators, educators, historians</li>
       </ul>
     </div>
   </section>
 
   <footer>
-    <hr class="footer-rule">
-    <figure class="plate" style="max-width: 340px; margin: 0 auto 26px;">
-      <img src="images/star-sign.jpg" alt="Lit marquee star sign reading Please Come Again, among rockets">
-      <figcaption><span>Please Come Again — Futures in Space</span><span class="cap-id">FIG. 10</span></figcaption>
+    <figure class="plate wide-mat" style="margin: 0 auto 26px;">
+      <img src="images/star-sign.jpg" alt="Lit marquee star sign reading Please Come Again, among rockets" width="1205" height="1600" loading="lazy" decoding="async">
+      <figcaption><span>Please Come Again · Futures in Space</span><span class="cap-id">FIG. 09</span></figcaption>
     </figure>
+
+    <div class="card rose" style="max-width: 360px; margin: 0 auto 24px;">
+      <div class="card-label">
+        <span class="card-title">Stay in Touch</span>
+        <span class="card-tag">D.01</span>
+      </div>
+      <ul>
+        <li><a href="mailto:amewim@unc.edu" style="color: inherit; text-decoration: none; border-bottom: 1px solid var(--cream-edge);">amewim@unc.edu</a></li>
+        <li><a href="https://www.linkedin.com/in/amewim" style="color: inherit; text-decoration: none; border-bottom: 1px solid var(--cream-edge);" target="_blank" rel="noopener">linkedin.com/in/amewim</a></li>
+      </ul>
+    </div>
+
     <div class="footer-row">
-      <span>AMELIA — EXHIBITS DESIGN STUDIO — NASM</span>
+      <span>AMELIA · EXHIBITS DESIGN STUDIO · NASM</span>
       <span>SUMMER 2026</span>
     </div>
   </footer>
 
-</div>
+</main>
 
 <script>
   var drawer = document.getElementById('drawer');
